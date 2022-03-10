@@ -1,0 +1,21 @@
+hr {
+  color: gray;
+  width: 90%;
+}
+
+.CardOne {
+  margin: 5px auto;
+  padding: 7px;
+  width: 95%;
+  border: solid rgb(180, 180, 180) 3px;
+  border-radius: 30px;
+}
+
+.img {
+  border-radius: 30px;
+}
+
+.texts {
+  margin-left: 2%;
+  text-align: left;
+}

@@ -1,0 +1,62 @@
+[
+    {
+        "id":1,
+         "name":"producto 1",
+         "price": 100
+
+    },
+    {
+        "id":2,
+         "name":"producto 2",
+         "price": 200
+
+    },
+    {
+        "id":3,
+         "name":"producto 3",
+         "price": 300
+
+    },
+    {
+        "id":4,
+         "name":"producto 4",
+         "price": 400
+
+    },
+    {
+        "id":5,
+         "name":"producto 5",
+         "price": 500
+
+    },
+    {
+        "id":6,
+         "name":"producto 6",
+         "price": 600
+
+    },
+    {
+        "id":7,
+         "name":"producto 7",
+         "price": 700
+
+    },
+    {
+        "id":8,
+         "name":"producto 8",
+         "price": 800
+
+    },
+    {
+        "id":9,
+         "name":"producto 9",
+         "price": 900
+
+    },
+    {
+        "id":10,
+         "name":"producto 10",
+         "price": 1000
+
+    }
+]
