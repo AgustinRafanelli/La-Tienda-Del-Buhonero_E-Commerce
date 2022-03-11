@@ -12,8 +12,20 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { StyledContainer } from './style';
+import { useSelector, useDispatch } from 'react-redux'
+import { sendLogOutRequest } from '../../redux/user';
+import { logoutCart } from '../../redux/cart';
 
 function NavView() {
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
+  const handleLogout = ()=>{
+    dispatch(sendLogOutRequest())
+      .then(()=> dispatch(logoutCart()))
+      .catch(err => console.error(err))
+  }
+
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -90,14 +102,20 @@ function NavView() {
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </Search> */}
-              <Link
-                to='/signIn'
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                <Button color='inherit' className='login'>
-                  Login
-                </Button>
-              </Link>
+              {user.id ? (
+                  <Button onClick={handleLogout} color='inherit' className='login'>
+                    Logout
+                  </Button>
+              ) : (
+                <Link
+                    to = '/signIn'
+                    style = {{ textDecoration: 'none', color: 'white' }}
+                  >
+                  <Button color='inherit' className='login'>
+                    Login
+                  </Button>
+                </Link>
+              )}
               <Link to='/cart' style={{ textDecoration: 'none' }}>
                 <Button color='inherit' size='large' className='cart'>
                   <ShoppingCartOutlinedIcon />
