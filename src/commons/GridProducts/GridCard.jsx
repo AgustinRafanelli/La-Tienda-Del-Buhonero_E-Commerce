@@ -9,17 +9,13 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/cart';
 
-
-
 export default function GridCard({product}) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const cart = useSelector(state => state.cart)
 
   const handleAddToCart = (e) => {
     if (!user.id) throw alert("You must be logged to perform this action")
     dispatch(addToCart(product.id))
-
   }
 
   return (
