@@ -24,8 +24,6 @@ export default function GridCard({product}) {
 
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'left'}}>
-
-      {console.log(user)}
       <Link to={`/products/${product.id}`}>
         <CardMedia
           component="img"

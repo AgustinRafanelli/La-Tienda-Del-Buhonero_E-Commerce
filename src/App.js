@@ -6,7 +6,7 @@ import RegisterView from './components/RegisterView/RegisterView';
 import LogInView from './components/LogInView/LogInView';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CartProduct from './commons/Product/CartProduct';
-import GridProducts from './commons/GirdProducts/GridProducts';
+import GridProducts from './commons/GridProducts/GridProducts';
 
 function App() {
   return (

@@ -37,7 +37,7 @@ User.prototype.hash = (password, salt) => {
 }
 
 /**
- * Esta funcion agrega un producto al carrito del usuario
+ * Esta funcion agrega un producto al carrito del usuario o modifica su cantidad
  * @param {int} productId es el id del producto que se desea agregar al carrito
  * @param {int} amount indica la cantidad del mismo producto que se desea agregar
  */
@@ -46,38 +46,7 @@ User.prototype.addToCart = function (productId, amount = 1){
     .then(async product=>{
       await this.addProduct(product, { through: { amount } })
       .then(()=>{})
-    })
-    
-}
-/**
- * Moidifica la cantidad de un producto existente
- * @param {int} productId es el id del producto que se desea modificar del carrito
- * @param {int} amount indica la cantidad del mismo producto que se desea agregar
- */
-User.prototype.changeProductAmount = function(productId, amount){
-  return Cart.update({ count: amount }, { where: { userId: this.id, productId } })
-}
-/**
- * Agrega 1 mas de producto al carrito
- * @param {int} productId es el id del producto que se desea modificar del carrito
- */
-User.prototype.moreProduct =  function(productId){
-  return Cart.findOne({ where: { userId: this.id, productId }})
-    .then( async cart => {
-      await cart.update( {count: cart.count + 1})
-      await cart.save()
-    })
-}
-/**
- * Remueve 1 del producto del carrito
- * @param {int} productId es el id del producto que se desea modificar del carrito
- */
-User.prototype.lessProduct = function (productId) {
-  return Cart.findOne({ where: { userId: this.id, productId } })
-    .then(async cart => {
-      await cart.update({ count: cart.count - 1 })
-      await cart.save()
-    })
+    })   
 }
 /**
  * Remueve un producto del carrito

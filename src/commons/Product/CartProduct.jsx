@@ -52,14 +52,14 @@ const CartProduct = () => {
           </Typography>
           <hr></hr>
           <Typography gutterBottom variant="h3" component="div">
-            <strong>Price:</strong> ${product.price}
+            <strong>Price:</strong> {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            <strong>Stok:</strong> {product.stok} unidades
+            <strong>Stock:</strong> {product.stock} unidades
           </Typography>
           <hr></hr>
 
-          <Button variant="contained">Add to Cart</Button>
+          {/* <Button variant="contained">Add to Cart</Button> */}
         </div>
       </ImageList>
     </div>
