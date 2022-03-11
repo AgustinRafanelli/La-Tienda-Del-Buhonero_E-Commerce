@@ -19,7 +19,9 @@ function useForm(userName, email, password, type) {
           name: userName.value,
           email: email.value,
           password: password.value,
-        })).then(()=>navigate("/home"))
+        }))
+          .then(() => dispatch(getCart()))
+          .then(()=>navigate("/home"))
       }else{
         email.reset();
         password.reset();
@@ -27,8 +29,8 @@ function useForm(userName, email, password, type) {
           email: email.value,
           password: password.value,
         }))
-        .then(()=> dispatch(getCart()))
-        .then(()=>navigate("/home"))
+          .then(()=> dispatch(getCart()))
+          .then(()=>navigate("/home"))
       }
   };
 
