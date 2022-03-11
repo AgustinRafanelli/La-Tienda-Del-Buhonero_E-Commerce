@@ -27,8 +27,6 @@ export default function GridProducts() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        {console.log(products)}
-        {console.log(test)}
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={2}>
             {products.map((product) => (

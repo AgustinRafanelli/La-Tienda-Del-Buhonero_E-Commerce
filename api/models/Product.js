@@ -17,14 +17,14 @@ Product.init({
     allowNull: false
   },
   description: {
-    type: S.DataTypes.STRING,
+    type: S.DataTypes.TEXT,
     allowNull: false
   },
   price: {
     type: S.DataTypes.INTEGER,
     allowNull: false
   },
-  stok: {
+  stock: {
     type: S.DataTypes.INTEGER,
     allowNull: false
   },

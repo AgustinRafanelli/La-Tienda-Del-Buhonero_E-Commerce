@@ -77,11 +77,11 @@ function NavView() {
                 sx={{ flexGrow: 1 }}
                 className='leftSide__title'
               >
-                #elBuhonero
+                #theMerchantShop
               </Typography>
             </div>
             <div className='rightSide__container'>
-              <Search>
+              {/* <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
@@ -89,7 +89,7 @@ function NavView() {
                   placeholder='Search…'
                   inputProps={{ 'aria-label': 'search' }}
                 />
-              </Search>
+              </Search> */}
               <Link
                 to='/signIn'
                 style={{ textDecoration: 'none', color: 'white' }}
