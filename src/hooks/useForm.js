@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { sendLogInRequest, sendRegisterRequest } from '../redux/user';
 import {useNavigate} from "react-router-dom"
+import { getCart } from '../redux/cart';
 
 function useForm(userName, email, password, type) {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,7 +26,9 @@ function useForm(userName, email, password, type) {
         dispatch(sendLogInRequest({
           email: email.value,
           password: password.value,
-        })).then(()=>navigate("/home"))
+        }))
+        .then(()=> dispatch(getCart()))
+        .then(()=>navigate("/home"))
       }
   };
 

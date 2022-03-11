@@ -6,6 +6,7 @@ import RegisterView from './components/RegisterView/RegisterView';
 import LogInView from './components/LogInView/LogInView';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CartProduct from './commons/Product/CartProduct';
+import GridProducts from './commons/GirdProducts/GridProducts';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/register' element={<RegisterView />} />
         <Route path='/signIn' element={<LogInView />} />
-        <Route path='/home' element={<h1>HOME</h1>} />
+        <Route path='/home' element={<GridProducts/>} />
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/product/:id' element={<CartProduct />} />
       </Routes>
