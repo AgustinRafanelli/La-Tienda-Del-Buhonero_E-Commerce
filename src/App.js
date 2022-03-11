@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Cart from './components/CartView/Cart';
 import NavView from './components/NavView/NavView';
@@ -7,8 +7,25 @@ import LogInView from './components/LogInView/LogInView';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CartProduct from './commons/Product/CartProduct';
 import GridProducts from './commons/GridProducts/GridProducts';
+import { useDispatch } from 'react-redux';
+import {getUser} from "./redux/user"
+import {getCart} from "./redux/cart"
 
 function App() {
+  
+  const dispatch = useDispatch()
+  
+  useEffect(()=>{
+    dispatch(getUser())
+    .then((data)=>{
+      if(data.payload){
+        console.log(data.payload)
+        dispatch(getCart())
+      }
+    })
+    .catch((ERR)=> console.error(ERR))
+  }, [])
+
   return (
     <div className='App'>
       <NavView />
