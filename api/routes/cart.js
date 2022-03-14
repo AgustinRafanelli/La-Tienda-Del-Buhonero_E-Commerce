@@ -12,10 +12,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   User.findByPk(req.user.id).then(async user => {
+    console.log(req.body.amount)
     return await user
       .addToCart(req.body.productId, req.body.amount)
       .then(() => user.getProducts())
-      .then(data => res.send(data));
+      .then(data => {console.log(data.cart)
+        res.send(data)});
   });
 });
 
