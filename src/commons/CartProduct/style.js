@@ -13,6 +13,7 @@ export const StyledContainer = styled.div`
     object-fit: contain;
     margin: 10px;
   }
+  
 
   .info {
     margin-left: 10px;
@@ -56,6 +57,8 @@ export const StyledContainer = styled.div`
         }
       }
     }
+
+    
 
     .info__model {
       margin-top: 0;

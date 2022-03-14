@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import products from './products.json';
 import Contador from './Contador';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,9 @@ import { getCart } from '../../redux/cart';
 import CartProduct from '../../commons/CartProduct/CartProduct';
 import { StyledContainer } from './style';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+
 
 const Cart = function () {
   const [totalPrice, setTotalPrice] = useState('')
@@ -25,12 +28,12 @@ const Cart = function () {
             <CartProduct key={product.id} {...product} />
           ))}
           <div className='checkout' >
-            {totalPrice}
-            <button>Buy Cart</button>
+            <p> Total:{totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }</p>
+           <Link to= "/checkout"> <button>Checkout</button></Link>
           </div>
         </div>
       ) : (
-        <h1>There are no products added</h1>
+        <h1>Your cart is empty</h1>
       )}
     </StyledContainer>
   );

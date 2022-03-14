@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { StyledContainer } from './style';
 import { addToCart, removeFromCart } from '../../redux/cart';
 import {useDispatch} from "react-redux";
@@ -60,9 +61,9 @@ function CartProduct({
             <button onClick={handleMore}>+</button>
             unidades)
           </p>
-            <button onClick={handleDelete}>Delete</button>
+            <DeleteIcon onClick={handleDelete}></DeleteIcon>
         </div>
-        <h3 className='info__model'>{model}</h3>
+        <h3 className='info__model'>{model}</h3>  
         <p className='info__description'>{description}</p>
         <div className='info__price'>{amountPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }</div>
       </div>

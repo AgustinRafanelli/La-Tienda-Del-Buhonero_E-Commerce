@@ -8,6 +8,6 @@ export const StyledContainer = styled.div`
     }
   }
   .checkout{
-    float: right;
+    float: center;
   }
 `;
