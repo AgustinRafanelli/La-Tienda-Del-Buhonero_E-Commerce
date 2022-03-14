@@ -23,7 +23,7 @@ router.delete('/:productId', (req, res) => {
   User.findByPk(req.user.id)
     .then(user => {
       return user
-        .removeFromCart(req.params.productId)
+        .removeFromCart(req.params.productId) 
         .then(() => user.getProducts());
     })
     .then(data => res.send(data));

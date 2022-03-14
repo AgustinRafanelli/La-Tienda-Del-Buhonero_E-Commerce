@@ -74,3 +74,4 @@ User.beforeCreate(user => {
 });
 
 module.exports = User;
+ 
