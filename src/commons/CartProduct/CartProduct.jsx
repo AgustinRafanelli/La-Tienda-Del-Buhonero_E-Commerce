@@ -2,6 +2,8 @@ import React from 'react';
 import { StyledContainer } from './style';
 import { addToCart, removeFromCart } from '../../redux/cart';
 import {useDispatch} from "react-redux";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 function CartProduct({
@@ -18,26 +20,31 @@ function CartProduct({
 }) {
 
   const dispatch= useDispatch();
+  const [amountPrice, setAmountPrice] = useState('')
+
+  useEffect(() => { 
+    setAmountPrice(price*cart.amount)
+  }, [cart.amount])
 
   const handleLess = ()=>{
-    
-    let amount = cart.amount -1
-    dispatch(addToCart({id, amount}))
-    
+    let amount = cart.amount - 1
+    dispatch(addToCart({ productId: id, amount }))
+      .catch(err => console.error(err))
   }
 
   const handleMore = ()=>{
-    
+    let amount = cart.amount + 1
+    dispatch(addToCart({ productId: id, amount }))
+      .catch(err => console.error(err))
   }
 
   const handleDelete = ()=>{
-    
+    dispatch(removeFromCart(id))
+      .catch(err => console.error(err))
   }
-
-  return (
-    
+  
+  return ( 
     <StyledContainer>
-    {console.log(cart.amount)}
       <img
         src='https://upload.wikimedia.org/wikipedia/commons/6/6f/HK_USP_9mm_Pragl.jpg'
         alt='Not found'
@@ -50,13 +57,14 @@ function CartProduct({
           <p className='header__stock'>
             (<button onClick= {handleLess}>-</button>
             {cart.amount}
-            <button>+</button>
+            <button onClick={handleMore}>+</button>
             unidades)
           </p>
+            <button onClick={handleDelete}>Delete</button>
         </div>
         <h3 className='info__model'>{model}</h3>
         <p className='info__description'>{description}</p>
-        <div className='info__price'>{ price.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }</div>
+        <div className='info__price'>{amountPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }</div>
       </div>
     </StyledContainer>
   );

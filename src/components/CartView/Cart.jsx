@@ -6,15 +6,15 @@ import { useDispatch } from 'react-redux';
 import { getCart } from '../../redux/cart';
 import CartProduct from '../../commons/CartProduct/CartProduct';
 import { StyledContainer } from './style';
+import { useState } from 'react';
 
 const Cart = function () {
-  const addToCart = () => {};
-
-  const removeFromCart = () => {};
-
-  const deleteFromCart = () => {};
-
+  const [totalPrice, setTotalPrice] = useState('')
   const cart = useSelector(state => state.cart);
+
+  useEffect(()=>{
+    setTotalPrice(cart.reduce((partialSum, product) => partialSum + (product.price * product.cart.amount), 0))
+  }, [cart])
 
   return (
     <StyledContainer>
@@ -24,24 +24,14 @@ const Cart = function () {
           {cart.map(product => (
             <CartProduct key={product.id} {...product} />
           ))}
+          <div className='checkout' >
+            {totalPrice}
+            <button>Buy Cart</button>
+          </div>
         </div>
       ) : (
         <h1>There are no products added</h1>
       )}
-
-      {/* <ul>
-    { products.map((product)=>(
-        <li key= {product.id}>{product.name} {product.price}
-        <button> Delete</button>
-        <button> + </button>
-        <button> - </button>
-        
-        </li>
-        
-    ))} 
-    <Contador/>
-       
-    </ul> */}
     </StyledContainer>
   );
 };

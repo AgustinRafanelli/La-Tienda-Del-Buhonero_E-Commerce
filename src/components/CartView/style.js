@@ -7,4 +7,7 @@ export const StyledContainer = styled.div`
       margin-left: 20px;
     }
   }
+  .checkout{
+    float: right;
+  }
 `;

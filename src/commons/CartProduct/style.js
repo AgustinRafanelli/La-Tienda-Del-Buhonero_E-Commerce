@@ -5,36 +5,40 @@ export const StyledContainer = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   margin: 0 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   border-radius: 10px;
 
   .img {
+    max-height: 8em;
     object-fit: contain;
-    margin: 20px;
+    margin: 10px;
   }
 
   .info {
-    margin-left: 30px;
+    margin-left: 10px;
     text-align: left;
 
     .info__header {
       display: flex;
       align-items: center;
+      line-height: 20px;
       font-size: 30px;
+      
 
       .header__title {
         font-weight: bold;
-        margin-right: 10px;
+        margin: 0.3em;
       }
 
       .header__brand {
         font-weight: bold;
-        margin-right: 10px;
+        margin: 10px;
       }
 
       .header__stock {
         display: flex;
         align-items: center;
+        margin: 10px;
         button {
           font-weight: bold;
           padding: 5px 0;
