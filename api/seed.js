@@ -1,6 +1,7 @@
 const {User, Product, Cart} = require('./models')
 
-User.create({ name: 'Rafa', email: 'rafa@gmail.com', password: '1234' })
+User.create({ name: 'Admin', email: 'admin@gmail.com', password: '1234', isAdmin: true })
+User.create({ name: 'Rafa', email: 'rafa@gmail.com', password: '1234' , isAdmin: true})
   .then(user =>{
     Product.create({ title: 'Pistola', brand: 'ACME', model: '9mm', description: 'tira tiros', price: 50, stock: 5 })
       .then(product => { user.addProduct(product) })
@@ -19,4 +20,4 @@ User.create({ name: 'Rafa', email: 'rafa@gmail.com', password: '1234' })
           })
       })
   })
-  .catch(err => console.log('find one ',err))  
+  .catch(err => console.log('find one ',err))
