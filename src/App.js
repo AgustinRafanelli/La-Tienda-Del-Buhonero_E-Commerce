@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import {getUser} from "./redux/user"
 import {getCart} from "./redux/cart"
 import AddModifyProductView from './components/AddModifyProductView/AddModifyProduct';
+import Checkout from './components/CheckoutView/Checkout';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path='/product/:id' element={<CartProduct />} />
         <Route path='/product/:id/modify' element={<AddModifyProductView />} />
         <Route path='/product/addProduct' element={<AddModifyProductView />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </div>
   );

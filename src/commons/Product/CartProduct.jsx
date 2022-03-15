@@ -25,8 +25,6 @@ const CartProduct = () => {
     showProduct();
   }, [productId]);
 
-  console.log(product);
-
   return (
     <div className="CardOne">
       <ImageList
