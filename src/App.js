@@ -10,6 +10,8 @@ import GridProducts from './commons/GridProducts/GridProducts';
 import { useDispatch } from 'react-redux';
 import {getUser} from "./redux/user"
 import {getCart} from "./redux/cart"
+import Checkout from './components/CheckoutView/Checkout';
+
 
 function App() {
   
@@ -36,6 +38,8 @@ function App() {
         <Route path='/home' element={<GridProducts/>} />
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/product/:id' element={<CartProduct />} />
+        <Route path='/checkout' element={<Checkout />} />
+
       </Routes>
     </div>
   );
