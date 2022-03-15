@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import GridCard from './GridCard';
 
+
 const theme = createTheme();
 
 export default function GridProducts() {
