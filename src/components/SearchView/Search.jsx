@@ -9,8 +9,8 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from "react";
 
 function useQuery(){
-    return new URLSearchParams(useLocation().search) 
-  }
+  return new URLSearchParams(useLocation().search) 
+}
 
 
 
@@ -22,14 +22,6 @@ const Search = function () {
   
   
   const buscar= query.get("search")
-  
-
-  useEffect(()=>{
-    const searchUrl = buscar ? `api/products/search?query=${buscar}`
-    :  axios.get(searchUrl)
-      .then(res => setProducts(res.data))
-  }, [buscar]) 
-
 
   const handleChange = (e)=>{
     setSearch(e.target.value)
@@ -89,7 +81,7 @@ const Search = function () {
           placeholder="Search…"
           value = {search}
             onChange = {handleChange} />
-     {/*  <Searchh>
+     {/*  <Search>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>

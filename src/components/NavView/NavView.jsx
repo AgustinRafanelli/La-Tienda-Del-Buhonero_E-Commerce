@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,11 +17,15 @@ import Search from "../SearchView/Search";
 function NavView() {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleLogout = ()=>{
     dispatch(sendLogOutRequest())
       .then(()=> dispatch(logoutCart()))
       .catch(err => console.error(err))
+  }
+  const handleRecord = () => {
+    navigate(`/history/${user.id}`)
   }
 
 
@@ -40,21 +44,29 @@ function NavView() {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography
-                variant='h6'
-                component='div'
-                sx={{ flexGrow: 1 }}
-                className='leftSide__title'
-              >
-                #theMerchantShop
-              </Typography>
+              <Link to="/">
+                <Typography
+                  variant='h6'
+                  component='div'
+                  sx={{ flexGrow: 1 }}
+                  className='leftSide__title'
+                >
+                  #theMerchantShop
+                </Typography>
+              </Link>
             </div>
             <div className='rightSide__container'>
+              
               <Search/>
               {user.id ? (
+                <>
+                  <Button onClick={handleRecord} color='inherit' className='login'>
+                    Previus purchase
+                  </Button>
                   <Button onClick={handleLogout} color='inherit' className='login'>
                     Logout
                   </Button>
+                </>
               ) : (
                 <Link
                     to = '/signIn'
