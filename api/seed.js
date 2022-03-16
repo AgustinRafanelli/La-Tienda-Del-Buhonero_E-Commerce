@@ -8,9 +8,9 @@ User.create({
 });
 User.create({
   name: "Rafa",
-  email: "rafa@gmail.com",
+  email: "agustinrafa1995@hotmail.com",
   password: "1234",
-  isAdmin: true,
+  isAdmin: false,
 })
   .then((user) => {
     Product.create({
