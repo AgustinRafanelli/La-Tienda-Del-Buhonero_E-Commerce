@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import {getUser} from "./redux/user"
 import {getCart} from "./redux/cart"
 import Checkout from './components/CheckoutView/Checkout';
+import Search from './components/SearchView/Search';
+import SearchedElements from './components/SearchedElements/SearchedElements';
 
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/product/:id' element={<CartProduct />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/search/:title' element={<SearchedElements />} />
 
       </Routes>
     </div>

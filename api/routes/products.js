@@ -1,4 +1,5 @@
 const express = require("express")
+const { Op } = require("sequelize")
 const router = express.Router()
 const {Product} = require("../models")
 
@@ -7,6 +8,7 @@ router.get("/", (req, res, next)=>{
     .then(products => res.send(products))
     .catch(next)
 })
+
 
 router.get("/:id", (req, res, next)=>{
     Product.findByPk(req.params.id)
@@ -31,5 +33,12 @@ router.delete("/:id", (req, res, next)=>{
     .then(()=>res.sendStatus(202))
     .catch(next)
 })
+
+router.get("/search/:title", (req,res,next)=>{
+    Product.findAll({where:{title:{[Op.like]:`%${req.params.title[0].toUpperCase() + req.params.title.slice(1).split("").map(letter=> letter.toLowerCase()).join("")}%`}}})
+    .then((products)=> res.send(products))
+    .catch(next)
+})
+
 
 module.exports = router;

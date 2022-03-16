@@ -1,46 +1,23 @@
-import React, { useState, useEffct } from "react";
-import GridProducts from "../../commons/GridProducts/GridProducts";
-import axios from "axios";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
-import { useNavigate } from "react-router";
-import { useLocation } from 'react-router-dom';
-import { useEffect } from "react";
-
-function useQuery(){
-    return new URLSearchParams(useLocation().search) 
-  }
-
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import InputBase from "@mui/material/InputBase";
+// import SearchIcon from "@mui/icons-material/Search";
+//import { styled, alpha } from "@mui/material/styles";
 
 const Search = function () {
-  const [search, setSearch] = useState("");
+  const [value, setValue] = useState("");
   const navigate = useNavigate()
-  const query = useQuery()
-  const [products, setProducts] = useState([])
-  
-  
-  const buscar= query.get("search")
-  
-
-  useEffect(()=>{
-    const searchUrl = buscar ? `api/products/search?query=${buscar}`
-    :  axios.get(searchUrl)
-      .then(res => setProducts(res.data))
-  }, [buscar]) 
-
 
   const handleChange = (e)=>{
-    setSearch(e.target.value)
+    setValue(e.target.value)
     
   }
-  const handleSubmit = (e) => {
-    
-    e.preventeDefault();
-    navigate.push(`/?search=${search}`)
-
+  const handleSearch = () => {
+    navigate(`/search/${value}`)
+    setValue("")
   };
+
+ 
 
  /*  const Searchh = styled("div")(({ theme }) => ({
     position: "relative",
@@ -84,11 +61,13 @@ const Search = function () {
     },
   })); */
   return (
-    <form onSubmit={handleSubmit}>
+    <div >
     <input   name="search"
           placeholder="Search…"
-          value = {search}
+          value = {value}
             onChange = {handleChange} />
+     <button type= "submit" onClick={handleSearch}> Search </button>       
+
      {/*  <Searchh>
         <SearchIconWrapper>
           <SearchIcon />
@@ -102,7 +81,7 @@ const Search = function () {
             onChange = {handleChange}
         />
       </Searchh> */}
-    </form>
+    </div>
   );
 };
 
