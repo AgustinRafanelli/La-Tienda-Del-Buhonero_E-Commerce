@@ -16,7 +16,7 @@ export default function GridCard({product}) {
 
   const handleAddToCart = (e) => {
     if (!user.id) throw alert("You must be logged to perform this action")
-    dispatch(addToCart(product.id))
+    dispatch(addToCart({productId:product.id}))
   }
 
   const handleDeleteItem = (e) => {
