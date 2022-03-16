@@ -12,6 +12,7 @@ import {getUser} from "./redux/user"
 import {getCart} from "./redux/cart"
 import AddModifyProductView from './components/AddModifyProductView/AddModifyProduct';
 import Checkout from './components/CheckoutView/Checkout';
+import HistoryView from './components/HistoryView/HistoryView'
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path='/product/:id/modify' element={<AddModifyProductView />} />
         <Route path='/product/addProduct' element={<AddModifyProductView />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/history/:id' element={<HistoryView />} />
       </Routes>
     </div>
   );

@@ -10,13 +10,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/cart';
 import axios from 'axios';
 
-export default function GridCard({product}) {
+export default function GridCard({ product }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
 
   const handleAddToCart = (e) => {
     if (!user.id) throw alert("You must be logged to perform this action")
-    dispatch(addToCart({productId:product.id}))
+    dispatch(addToCart({ productId: product.id }))
   }
 
   const handleDeleteItem = (e) => {
@@ -25,30 +25,25 @@ export default function GridCard({product}) {
   }
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'left'}}>
-
-      {user.isAdmin ? (
-        <Button onClick={handleDeleteItem} sx={{ color: 'red', fontweight: 'bold' }} size="small">X</Button>
-      ) : (<></>)}
-      <Link to={`/product/${product.id}`}>
-        <CardMedia
-          component="img"
-          image="https://source.unsplash.com/random"
-          alt="random"
-        />
-      </Link>
-        <CardContent sx={{ flexGrow: 2 }}>
-          <Typography gutterBottom variant="h5" component="h2">
+    <Card sx={{ width: 1/1, display: 'flex', flexDirection: 'row', alignItems: 'space-between', justifyContent: 'left' }}>
+      <CardContent sx={{ flexGrow: 2 }}>
+        <Link to={`/product/${product.id}`}>
+          <Typography gutterBottom variant="h6" component="h5" sx={{alignContent: 'left'}}>
             {product.title} {product.brand} {product.model}
           </Typography>
-        </CardContent>
+        </Link>
+      </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
-          <Typography sx={{ color: 'green' }}>
-          { product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }
-          </Typography>
-          <Button onClick={handleAddToCart} size="small">Add to Cart</Button>
-        
-        </CardActions>
-    </Card>     
+        <Typography > {product.cart.amount} x </Typography>
+        <Typography sx={{ color: 'green' }}>
+          {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Typography>
+        <Typography > = </Typography>
+        <Typography sx={{ color: 'green' }}>
+          {(product.price * product.cart.amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Typography>
+
+      </CardActions>
+    </Card>
   );
 }
