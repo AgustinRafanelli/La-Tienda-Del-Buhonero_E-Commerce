@@ -1,5 +1,5 @@
 const express = require('express');
-const { User } = require('../models');
+const { User, Product } = require('../models');
 const router = express.Router();
 const passport = require('passport');
 
@@ -49,5 +49,17 @@ router.get('/admin', isLogged, isAdmin, (req, res, next) => {
     .then(users => res.send(users))
     .catch(next);
 });
+
+router.get('/history', isLogged, (req, res, next)=>{
+  User.findByPk(req.user.id)
+    .then(user => user.getOrders())
+    .then(orders =>{
+      return orders.map(order => {
+        return order.products.map(product => JSON.parse(product))
+      })
+    })
+    .then(products => {res.send(products)})
+    .catch(next)
+})
 
 module.exports = router;
