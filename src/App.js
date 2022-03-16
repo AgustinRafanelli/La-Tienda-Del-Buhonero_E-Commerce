@@ -36,6 +36,7 @@ function App() {
         <Route path='/home' element={<GridProducts/>} />
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/product/:id' element={<CartProduct />} />
+        
       </Routes>
     </div>
   );

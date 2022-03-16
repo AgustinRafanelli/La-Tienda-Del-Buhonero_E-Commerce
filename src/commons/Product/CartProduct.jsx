@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import { CardMedia, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
 
 const CartProduct = () => {
   const [product, setProduct] = useState([]);
@@ -26,6 +25,7 @@ const CartProduct = () => {
   }, [productId]);
 
   console.log(product);
+  if (!product.id) return <></>;
 
   return (
     <div className="CardOne">
@@ -52,14 +52,16 @@ const CartProduct = () => {
           </Typography>
           <hr></hr>
           <Typography gutterBottom variant="h3" component="div">
-            <strong>Price:</strong> {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+            <strong>Price:</strong>{" "}
+            {product.price.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
             <strong>Stock:</strong> {product.stock} unidades
           </Typography>
           <hr></hr>
-
-          {/* <Button variant="contained">Add to Cart</Button> */}
         </div>
       </ImageList>
     </div>
