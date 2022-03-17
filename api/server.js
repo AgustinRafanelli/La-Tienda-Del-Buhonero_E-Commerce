@@ -44,7 +44,7 @@ app.use('/api', (req, res) => {
 
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
-}); 
+});
 
 const PORT = 3001;
 
