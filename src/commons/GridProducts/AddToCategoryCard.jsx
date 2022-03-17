@@ -9,23 +9,43 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cart";
 import axios from "axios";
-import Valoration from "../Valoration/Valoration";
-import Comment from "../Comment/Comment";
+import { useState, useEffect } from "react";
 
-export default function GridCard({ product }) {
-  const dispatch = useDispatch();
+export default function AddToCategoryCard({ product }) {
   const user = useSelector((state) => state.user);
-  const param = useLocation();
 
-  const handleAddToCart = (e) => {
+  const [categoryPoducts, setCategoryProducts] = useState([]);
+  const [reset, setReset] = useState(1);
+
+  const url = useLocation();
+  const category = url.search.slice(1);
+
+  const addToCategory = (e) => {
     if (!user.id) throw alert("You must be logged to perform this action");
-    dispatch(addToCart({ productId: product.id }));
+    axios
+      .post(`/api/category/${category}`, {
+        productId: product.id,
+      })
+      .then(() => setReset(reset + 1));
   };
 
-  const handleDeleteItem = (e) => {
-    if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
-    axios.delete(`/api/products/${product.id}`);
+  const deleteProductCart = () => {
+    if (!user.id) throw alert("You must be logged to perform this action");
+    axios
+      .delete(`/api/category/${category}/${product.id}`)
+      .then(() => setReset(reset + 1));
   };
+
+  useEffect(() => {
+    axios
+      .get(`/api/category/${category}`)
+      .then((res) => res.data)
+      .then((data) => setCategoryProducts(data));
+  }, [reset, url]);
+
+  const catego = categoryPoducts.filter((category) => {
+    return category.id == product.id;
+  });
 
   return (
     <Card
@@ -36,17 +56,6 @@ export default function GridCard({ product }) {
         justifyContent: "left",
       }}
     >
-      {user.isAdmin ? (
-        <Button
-          onClick={handleDeleteItem}
-          sx={{ color: "red", fontweight: "bold" }}
-          size="small"
-        >
-          X
-        </Button>
-      ) : (
-        <></>
-      )}
       <Link to={`/product/${product.id}`}>
         <CardMedia
           component="img"
@@ -54,7 +63,6 @@ export default function GridCard({ product }) {
           alt="random"
         />
       </Link>
-      <Valoration id={product.id} />
       <CardContent sx={{ height: "100px" }}>
         <Typography gutterBottom variant="h5" component="h2">
           {product.title} {product.brand} {product.model}
@@ -67,11 +75,12 @@ export default function GridCard({ product }) {
             currency: "USD",
           })}
         </Typography>
-        <Button onClick={handleAddToCart} size="small">
-          Add to Cart
-        </Button>
       </CardActions>
-      <Comment id={product.id} />
+      {catego.length > 0 ? (
+        <Button onClick={deleteProductCart}>Delete product to category</Button>
+      ) : (
+        <Button onClick={addToCategory}>Add product to category</Button>
+      )}
     </Card>
   );
 }

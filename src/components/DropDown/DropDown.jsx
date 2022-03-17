@@ -5,14 +5,21 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { TextField, Button } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 const DropDown = () => {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [categories, setCategories] = useState([]);
   const [categoryCount, setCategoryCount] = useState("");
   const mostNewCategory = useInput("newCategory");
   const InputUpdateCategory = useInput("updateCategory");
+  const [reset, setReset] = useState(1);
 
   useEffect(() => {
     axios
@@ -29,7 +36,7 @@ const DropDown = () => {
         );
       })
       .then((data) => setCategoryCount(data));
-  }, []);
+  }, [reset]);
 
   const deleteCategory = (id) => {
     if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
@@ -41,12 +48,16 @@ const DropDown = () => {
       .catch((err) => console.log(err));
   };
 
-  const newCategory = () => {
+  const newCategory = (e) => {
+    e.preventDefault();
     if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
-    return axios
+    axios
       .post("/api/category", {
         name: mostNewCategory.value,
       })
+      .then(() => setReset(reset + 1))
+      .then(() => navigate(`/addToCategory?${mostNewCategory.value}`))
+      .then(() => mostNewCategory.reset())
       .catch((err) => console.log(err));
   };
 
@@ -62,7 +73,7 @@ const DropDown = () => {
   return (
     <StyledContainer>
       <Typography
-        variant="h6"
+        variant="h5"
         component="div"
         sx={{ flexGrow: 1 }}
         className="leftSide__title"
@@ -77,41 +88,78 @@ const DropDown = () => {
               <li key={i}>
                 {showButton ? (
                   <form onSubmit={() => updateCategory(category.name)}>
-                    <input
+                    <TextField
+                      size="small"
+                      id="outlined-basic"
+                      label={category.name}
+                      variant="outlined"
                       type="text"
                       name={InputUpdateCategory.name}
                       value={InputUpdateCategory.value}
                       onChange={InputUpdateCategory.handleChange}
                       placeholder={category.name}
                     />
-                    <button>send</button>
+                    <Button
+                      variant="contained"
+                      href="#contained-buttons"
+                      size="small"
+                    >
+                      send
+                    </Button>
                   </form>
                 ) : (
                   <>
-                    <Link to="/home">{category.name}</Link>
-                    <button
+                    <Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ flexGrow: 1 }}
+                      className="leftSide__title"
+                    >
+                      <Link to="/home">{category.name}</Link>
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      size="small"
                       onClick={() => deleteCategory(category.id)}
                       className="button"
                     >
-                      X
-                    </button>
+                      <DeleteIcon/>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() =>
+                        navigate(`/addToCategory?${category.name}`)
+                      }
+                    >
+                      <AddIcon/>Add product
+                    </Button>
                   </>
                 )}
 
-                <button
+                <Button
+                  size="small"
+                  variant="contained"
                   onClick={
                     showButton
                       ? () => setShowButton(false)
                       : () => setShowButton(true)
                   }
                 >
-                  Edit
-                </button>
+                  <EditIcon />
+                </Button>
               </li>
             ) : (
               categoryCount[i] > 0 && (
                 <li key={i}>
-                  <Link to={`/categories/${category.name}`}>{category.name}</Link>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    sx={{ flexGrow: 1 }}
+                    className="leftSide__title"
+                  >
+                    <Link to="/home">{category.name}</Link>
+                  </Typography>
                 </li>
               )
             );
@@ -120,14 +168,19 @@ const DropDown = () => {
 
       {user.isAdmin && (
         <form onSubmit={newCategory}>
-          <input
+          <TextField
+            id="outlined-basic"
+            variant="outlined"
+            size="small"
             type="text"
             name={mostNewCategory.name}
             value={mostNewCategory.value}
             onChange={mostNewCategory.handleChange}
             placeholder="Add category"
           />
-          <button>+</button>
+          <Button variant="contained" size="small">
+          <AddIcon/>
+          </Button>
         </form>
       )}
     </StyledContainer>
