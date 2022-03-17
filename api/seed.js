@@ -68,4 +68,95 @@ Category.create({ name: "armas" }).then((category) => {
   });
 });
 
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
 
