@@ -55,108 +55,108 @@ User.create({
       });
   })
   .catch((err) => console.log("find one ", err));
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Lanzacohetes",
-    brand: "ACME",
-    model: "bom-17",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Lanzacohetes",
+//     brand: "ACME",
+//     model: "bom-17",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
-Category.create({ name: "armas" }).then((category) => {
-  Product.create({
-    title: "Pistola",
-    brand: "ACME",
-    model: "Glock",
-    description: "tira tiros",
-    price: 500,
-    stock: 5,
-  }).then((product) => {
-    category.addProduct(product.id);
-  });
-});
+// Category.create({ name: "armas" }).then((category) => {
+//   Product.create({
+//     title: "Pistola",
+//     brand: "ACME",
+//     model: "Glock",
+//     description: "tira tiros",
+//     price: 500,
+//     stock: 5,
+//   }).then((product) => {
+//     category.addProduct(product.id);
+//   });
+// });
 
 
