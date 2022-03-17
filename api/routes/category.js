@@ -14,6 +14,13 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
+router.get("/:category/count", (req, res, next) => {
+  Category.findOne({ where: { name: req.params.category } })
+    .then((category) => category.countProducts())
+    .then((data) => res.status(200).send(`${data}`))
+    .catch(next);
+});
+
 router.get("/:category", (req, res, next) => {
   Category.findOne({ where: { name: req.params.category } })
     .then((category) => category.getProducts())
@@ -34,8 +41,15 @@ router.post("/:category", isLogedAndAdmin, (req, res, next) => {
     .catch(next);
 });
 
-router.delete("/", isLogedAndAdmin, (req, res, next) => {
-  Category.destroy({ where: { id: req.body.id } })
+router.put("/:category", isLogedAndAdmin, (req, res, next) => {
+  Category.findOne({ where: { name: req.params.category } })
+    .then((category) => category.update({ name: req.body.name }))
+    .then((data) => res.send(data))
+    .catch(next);
+});
+
+router.delete("/:id", isLogedAndAdmin, (req, res, next) => {
+  Category.destroy({ where: { id: req.params.id } })
     .then(() => res.sendStatus(202))
     .catch(next);
 });

@@ -46,7 +46,6 @@ function App() {
         <Route path='/product/:id/modify' element={<AddModifyProductView />} />
         <Route path='/product/addProduct' element={<AddModifyProductView />} />
         <Route path='/checkout' element={<Checkout />} />
-
         <Route path='/search/:title' element={<SearchedElements />} />
         <Route path='/history/:id' element={<HistoryView />} />
       </Routes>
