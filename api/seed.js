@@ -134,5 +134,3 @@ Product.create({
   price: 734,
   stock: 7,
 })
-
-
