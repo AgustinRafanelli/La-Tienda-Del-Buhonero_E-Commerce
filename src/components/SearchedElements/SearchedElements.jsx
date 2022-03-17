@@ -18,12 +18,12 @@ export default function SearchedElements() {
       <h1 className="title"> Results for your search: {title} </h1>
       <div className="products">
         {" "}
-        {data.length &&
+        {data.length ?
           data.map((product) => (
             <div className="product" key={product.id}>
               <GridCard product={product}  />
             </div>
-          ))}
+          )): <h1>Product Not Found</h1>}
       </div>
     </StyledContainer>
   );
