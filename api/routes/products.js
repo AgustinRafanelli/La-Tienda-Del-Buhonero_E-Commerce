@@ -1,6 +1,8 @@
+
 const express = require('express');
 const router = express.Router();
 const { Product } = require('../models');
+const { Op } = require("sequelize")
 
 router.get('/', (req, res, next) => {
   Product.findAll()
@@ -20,16 +22,24 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/:id', (req, res, next) => {
-  Product.update(req.body, { where: { id: req.params.id }, returning: true })
-    .then([_, updated], res.send(updated[0]))
-    .catch(next);
-});
+
+router.put("/:id", (req, res, next)=>{
+    Product.update(req.body, {where: {id:req.params.id}, returning:true})
+    .then((product)=>{res.send(product[1][0])})
+    .catch(next)
+})
 
 router.delete('/:id', (req, res, next) => {
   Product.destroy({ where: { id: req.params.id } })
     .then(() => res.sendStatus(202))
     .catch(next);
 });
+
+router.get("/search/:title", (req,res,next)=>{
+    Product.findAll({where:{title:{[Op.like]:`%${req.params.title[0].toUpperCase() + req.params.title.slice(1).split("").map(letter=> letter.toLowerCase()).join("")}%`}}})
+    .then((products)=> res.send(products))
+    .catch(next)
+})
+
 
 module.exports = router;

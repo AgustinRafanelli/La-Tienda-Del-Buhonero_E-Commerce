@@ -35,18 +35,15 @@ export default function GridCard({ product }) {
         justifyContent: 'left',
       }}
     >
-      {user.isAdmin ? (
-        <Button
-          onClick={handleDeleteItem}
-          sx={{ color: 'red', fontweight: 'bold' }}
-          size='small'
-        >
-          X
-        </Button>
-      ) : (
-        <></>
-      )}
-      <Link to={`/products/${product.id}`}>
+      {
+        user.isAdmin ? 
+         (
+          <Button onClick={handleDeleteItem} sx={{ color: 'red', fontweight: 'bold' }} size="small">X</Button>
+         ) 
+         : 
+         (<></>)
+       }
+      <Link to={`/product/${product.id}`}>
         <CardMedia
           component='img'
           image='https://source.unsplash.com/random'
