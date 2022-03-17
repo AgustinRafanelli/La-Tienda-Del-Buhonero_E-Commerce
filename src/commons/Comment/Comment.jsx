@@ -12,15 +12,19 @@ function Comment({ id }) {
 
   const user = useSelector(state => state.user);
 
-  const { name, value, handleChange } = useInput('inputComent');
+  const { name, value, handleChange, reset } = useInput('inputComent');
 
   const navigate = useNavigate();
 
   const handleAddComment = () => {
     if (!user.id) navigate('/signIn');
+    if (!value) return;
     return axios
       .post(`/api/reviews/comments/${id}`, { comment: value })
-      .then(res => setComments(res.data));
+      .then(res => {
+        setComments(res.data);
+        reset('');
+      });
   };
 
   const handleShowComments = () => {
@@ -48,20 +52,22 @@ function Comment({ id }) {
         />
       </div>
       <button className='comments__button' onClick={handleShowComments}>
-        {active ? 'Hide comments' : 'Show comments'}
+        {active && user.id ? 'Hide comments' : 'Show comments'}
       </button>
-      {active &&
-        (comments.length ? (
-          <div className='comments__container'>
-            {comments.map((comment, i) => (
-              <p key={i} className='comments__item'>
-                {comment}
-              </p>
-            ))}
-          </div>
-        ) : (
-          <p>There are no comments</p>
-        ))}
+      {user.id
+        ? active &&
+          (comments.length ? (
+            <div className='comments__container'>
+              {comments.map((comment, i) => (
+                <p key={i} className='comments__item'>
+                  {comment}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <p>There are no comments</p>
+          ))
+        : null}
     </StyledContainer>
   );
 }

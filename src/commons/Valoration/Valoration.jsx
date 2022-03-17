@@ -7,62 +7,46 @@ import { StyledContainer } from './style';
 
 function Valoration({ id }) {
   const [valoration, setValoration] = useState(0);
-  const [rating, setRating] = useState({
-    sum: 0,
-    length: 0,
-  });
+  const [average, setAverage] = useState(0);
 
   const navigate = useNavigate();
 
   const user = useSelector(state => state.user);
 
+  const getAverage = id => {
+    return axios.get(`/api/reviews/valorations/average/${id}`).then(res => {
+      setAverage(parseInt(res.data));
+    });
+  };
+
   const handleClick = starId => {
     if (!user.id) navigate('/signIn');
     if (!valoration) {
       return axios
-        .post(`/api/reviews/valorations/${id}`, {
-          valoration: starId,
-          ratingSum: rating.sum + starId,
-          ratingLength: rating.length + 1,
+        .post(`/api/reviews/valorations/${id}`, { valoration: starId })
+        .then(res => {
+          setValoration(parseInt(res.data));
         })
-        .then(res => res.data)
-        .then(() => {
-          setValoration(starId);
-          setRating({
-            sum: rating.sum + starId,
-            length: rating.length + 1,
-          });
-        });
+        .then(() => getAverage(id));
     } else {
       return axios
-        .put(`/api/reviews/valorations/${id}`, {
-          valoration: starId,
-          ratingSum: rating.sum + starId,
-          ratingLength: rating.length + 1,
+        .put(`/api/reviews/valorations/${id}`, { valoration: starId })
+        .then(res => {
+          setValoration(parseInt(res.data));
         })
-        .then(res => res.data)
-        .then(() => {
-          setValoration(starId);
-          setRating({
-            sum: rating.sum + starId,
-            length: rating.length + 1,
-          });
-        });
+        .then(() => getAverage(id));
     }
   };
 
   useEffect(() => {
+    return getAverage(id);
+  }, [id]);
+
+  useEffect(() => {
     if (!user.id) return;
-    return axios
-      .get(`/api/reviews/valorations/${id}`)
-      .then(res => res.data)
-      .then(review => {
-        setValoration(review.valoration);
-        setRating({
-          sum: review.ratingSum,
-          length: review.ratingLength,
-        });
-      });
+    return axios.get(`/api/reviews/valorations/${id}`).then(res => {
+      setValoration(parseInt(res.data));
+    });
   }, [id, user]);
 
   return (
@@ -83,11 +67,7 @@ function Valoration({ id }) {
           />
         ))}
       </div>
-      {user.id ? (
-        rating.sum ? (
-          <span>Average {Math.round(rating.sum / rating.length)}</span>
-        ) : null
-      ) : null}
+      <span>Average {average}</span>
     </StyledContainer>
   );
 }

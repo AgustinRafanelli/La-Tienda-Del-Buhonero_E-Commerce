@@ -32,14 +32,6 @@ Product.init(
     imgUrl: {
       type: S.DataTypes.STRING,
     },
-    ratingSum: {
-      type: S.DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    ratingLength: {
-      type: S.DataTypes.INTEGER,
-      defaultValue: 0,
-    },
     comments: {
       type: S.DataTypes.TEXT,
     },

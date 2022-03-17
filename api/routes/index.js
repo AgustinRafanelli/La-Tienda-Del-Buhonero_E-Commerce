@@ -15,6 +15,6 @@ router.use('/users', users);
 router.use('/products', products);
 router.use('/cart', isLogged, cart);
 router.use('/category', category);
-router.use('/reviews', isLogged, reviews);
+router.use('/reviews', reviews);
 
 module.exports = router;
