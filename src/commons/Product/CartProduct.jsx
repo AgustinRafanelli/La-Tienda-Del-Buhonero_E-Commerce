@@ -23,9 +23,9 @@ const CartProduct = () => {
   useEffect(() => {
     showProduct();
   }, [productId]);
-
-  if (!product.id) return <></>;
-
+  
+  if(!product.id) return <></>
+  
   return (
     <div className="CardOne">
       <ImageList

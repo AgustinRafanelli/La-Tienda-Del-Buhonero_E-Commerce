@@ -4,57 +4,37 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { useSelector } from 'react-redux';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+/* const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
   { name: 'Expiry date', detail: '04/2024' },
 ];
+ */
 
-export default function Review() {
+export default function Review({fullName, addresses, payments}) {
+  const cart = useSelector((state)=> state.cart)
+  const total = cart.reduce((partialSum, product) => partialSum + (product.price * product.cart.amount), 0)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
+      {console.log(cart)}
       <List disablePadding>
-        {products.map((product) => (
+        {cart.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={product.title} secondary={product.brand+' '+product.model} />
+            <Typography variant="body2">{product.cart.amount+' x '+product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Typography>
           </ListItem>
         ))}
-
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {total.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Typography>
         </ListItem>
       </List>
@@ -63,8 +43,10 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{fullName[0].value} {fullName[1].value}</Typography>
+          <Typography gutterBottom>{
+            addresses.map(item => ' '+item.value+',')
+          }</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
@@ -77,7 +59,7 @@ export default function Review() {
                   <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{payment.value}</Typography>
                 </Grid>
               </React.Fragment>
             ))}

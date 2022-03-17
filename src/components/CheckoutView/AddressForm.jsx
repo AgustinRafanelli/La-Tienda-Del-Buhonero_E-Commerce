@@ -4,8 +4,11 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import useInput from '../../hooks/useInput';
 
-export default function AddressForm() {
+export default function AddressForm({ fullName, addresses}) {
+  
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -18,6 +21,8 @@ export default function AddressForm() {
             id="firstName"
             name="firstName"
             label="First name"
+            value={fullName[0].value}
+            onChange={fullName[0].handleChange}
             fullWidth
             autoComplete="given-name"
             variant="standard"
@@ -29,6 +34,8 @@ export default function AddressForm() {
             id="lastName"
             name="lastName"
             label="Last name"
+            value={fullName[1].value}
+            onChange={fullName[1].handleChange}
             fullWidth
             autoComplete="family-name"
             variant="standard"
@@ -40,6 +47,8 @@ export default function AddressForm() {
             id="address1"
             name="address1"
             label="Address line 1"
+            value={addresses[0].value}
+            onChange={addresses[0].handleChange}
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
@@ -61,6 +70,8 @@ export default function AddressForm() {
             id="city"
             name="city"
             label="City"
+            value={addresses[1].value}
+            onChange={addresses[1].handleChange}
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
@@ -71,6 +82,8 @@ export default function AddressForm() {
             id="state"
             name="state"
             label="State/Province/Region"
+            value={addresses[2].value}
+            onChange={addresses[2].handleChange}
             fullWidth
             variant="standard"
           />
@@ -81,6 +94,8 @@ export default function AddressForm() {
             id="zip"
             name="zip"
             label="Zip / Postal code"
+            value={addresses[3].value}
+            onChange={addresses[3].handleChange}
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
@@ -92,15 +107,11 @@ export default function AddressForm() {
             id="country"
             name="country"
             label="Country"
+            value={addresses[4].value}
+            onChange={addresses[4].handleChange}
             fullWidth
             autoComplete="shipping country"
             variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
           />
         </Grid>
       </Grid>
