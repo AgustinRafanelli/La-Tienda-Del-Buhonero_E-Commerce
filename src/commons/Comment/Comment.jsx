@@ -12,15 +12,19 @@ function Comment({ id }) {
 
   const user = useSelector(state => state.user);
 
-  const { name, value, handleChange } = useInput('inputComent');
+  const { name, value, handleChange, reset } = useInput('inputComent');
 
   const navigate = useNavigate();
 
   const handleAddComment = () => {
     if (!user.id) navigate('/signIn');
+    if (!value) return;
     return axios
       .post(`/api/reviews/comments/${id}`, { comment: value })
-      .then(res => setComments(res.data));
+      .then(res => {
+        setComments(res.data);
+        reset('');
+      });
   };
 
   const handleShowComments = () => {
