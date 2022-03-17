@@ -52,20 +52,22 @@ function Comment({ id }) {
         />
       </div>
       <button className='comments__button' onClick={handleShowComments}>
-        {active ? 'Hide comments' : 'Show comments'}
+        {active && user.id ? 'Hide comments' : 'Show comments'}
       </button>
-      {active &&
-        (comments.length ? (
-          <div className='comments__container'>
-            {comments.map((comment, i) => (
-              <p key={i} className='comments__item'>
-                {comment}
-              </p>
-            ))}
-          </div>
-        ) : (
-          <p>There are no comments</p>
-        ))}
+      {user.id
+        ? active &&
+          (comments.length ? (
+            <div className='comments__container'>
+              {comments.map((comment, i) => (
+                <p key={i} className='comments__item'>
+                  {comment}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <p>There are no comments</p>
+          ))
+        : null}
     </StyledContainer>
   );
 }
