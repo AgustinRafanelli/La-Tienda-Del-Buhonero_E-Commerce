@@ -1,12 +1,16 @@
-const User = require('./User')
-const Product = require('./Product')
-const Category = require('./Category')
-const Cart = require('./Cart')
+const User = require('./User');
+const Product = require('./Product');
+const Category = require('./Category');
+const Cart = require('./Cart');
+const Review = require('./Review');
 
-User.belongsToMany(Product, { through: Cart})
-Product.belongsToMany(User, { through: Cart})
+User.belongsToMany(Product, { through: Cart });
+Product.belongsToMany(User, { through: Cart });
 
-Product.belongsToMany(Category, { through: 'product_category' })
-Category.belongsToMany(Product, { through: 'product_category' })
+Product.belongsToMany(Category, { through: 'product_category' });
+Category.belongsToMany(Product, { through: 'product_category' });
 
-module.exports = { User, Product, Category, Cart}
+Review.belongsTo(User);
+Review.belongsTo(Product);
+
+module.exports = { User, Product, Category, Cart, Review };
