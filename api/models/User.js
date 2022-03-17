@@ -46,6 +46,7 @@ User.prototype.hash = (password, salt) => {
  */
 User.prototype.addToCart = function (productId, amount = 1) {
   return Product.findByPk(productId).then(async product => {
+    console.log(product)
     await this.addProduct(product, { through: { amount } }).then(() => {});
   });
 };

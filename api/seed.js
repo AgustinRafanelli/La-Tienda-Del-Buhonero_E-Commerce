@@ -8,9 +8,9 @@ User.create({
 });
 User.create({
   name: "Rafa",
-  email: "rafa@gmail.com",
+  email: "agustinrafa1995@hotmail.com",
   password: "1234",
-  isAdmin: true,
+  isAdmin: false,
 })
   .then((user) => {
     Product.create({
@@ -60,6 +60,97 @@ Category.create({ name: "armas" }).then((category) => {
     title: "Lanzacohetes",
     brand: "ACME",
     model: "bom-17",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
+    description: "tira tiros",
+    price: 500,
+    stock: 5,
+  }).then((product) => {
+    category.addProduct(product.id);
+  });
+});
+
+Category.create({ name: "armas" }).then((category) => {
+  Product.create({
+    title: "Pistola",
+    brand: "ACME",
+    model: "Glock",
     description: "tira tiros",
     price: 500,
     stock: 5,

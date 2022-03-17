@@ -24,7 +24,6 @@ const CartProduct = () => {
     showProduct();
   }, [productId]);
 
-  console.log(product);
   if (!product.id) return <></>;
 
   return (
