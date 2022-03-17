@@ -25,10 +25,10 @@ export default function GridCard({product}) {
       .then(() => setReset(reset - 1))
   }
 
-  const handleDeleteItem = (e) => {
-    if (!user.isAdmin) throw alert("You shoudn't be seeing this button")
-    axios.delete(`/api/products/${product.id}`)
-  }
+  const handleDeleteItem = e => {
+    if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
+    axios.delete(`/api/products/${product.id}`);
+  };
 
   const handleRemoveFromCart = ()=>{
     dispatch(removeFromCart(product.id))
@@ -40,23 +40,35 @@ export default function GridCard({product}) {
   },[reset])
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'left'}}>
-
-      {user.isAdmin ? (
-        <Button onClick={handleDeleteItem} sx={{ color: 'red', fontweight: 'bold' }} size="small">X</Button>
-      ) : (<></>)}
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'space-between',
+        justifyContent: 'left',
+      }}
+    >
+      {
+        user.isAdmin ? 
+         (
+          <Button onClick={handleDeleteItem} sx={{ color: 'red', fontweight: 'bold' }} size="small">X</Button>
+         ) 
+         : 
+         (<></>)
+       }
       <Link to={`/product/${product.id}`}>
         <CardMedia
-          component="img"
-          image="https://source.unsplash.com/random"
-          alt="random"
+          component='img'
+          image='https://source.unsplash.com/random'
+          alt='random'
         />
       </Link>
-        <CardContent sx={{ flexGrow: 2 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {product.title} {product.brand} {product.model}
-          </Typography>
-        </CardContent>
+      <Valoration id={product.id} />
+      <CardContent sx={{ height: '100px' }}>
+        <Typography gutterBottom variant='h5' component='h2'>
+          {product.title} {product.brand} {product.model}
+        </Typography>
+      </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
           <Typography sx={{ color: 'green' }}>
           { product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }
@@ -66,9 +78,7 @@ export default function GridCard({product}) {
           ) : (
             <Button onClick = { handleAddToCart } size = "small">Add to Cart</Button>
           )}
-          
-        
         </CardActions>
-    </Card>     
+    </Card>
   );
 }
