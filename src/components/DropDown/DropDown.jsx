@@ -111,7 +111,7 @@ const DropDown = () => {
             ) : (
               categoryCount[i] > 0 && (
                 <li key={i}>
-                  <Link to="/home">{category.name}</Link>
+                  <Link to={`/categories/${category.name}`}>{category.name}</Link>
                 </li>
               )
             );

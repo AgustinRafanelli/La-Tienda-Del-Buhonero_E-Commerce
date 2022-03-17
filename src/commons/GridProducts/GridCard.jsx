@@ -6,25 +6,38 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/cart';
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart, removeFromCart } from '../../redux/cart';
 import axios from 'axios';
-import Valoration from '../Valoration/Valoration';
-import Comment from '../Comment/Comment';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function GridCard({ product }) {
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+export default function GridCard({product}) {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  const cart = useSelector(state => state.cart)
+  const [reset, setReset] = useState('0')
+  const [onCart, setOnCart] = useState([])
 
-  const handleAddToCart = e => {
-    if (!user.id) throw alert('You must be logged to perform this action');
-    dispatch(addToCart({ productId: product.id }));
-  };
+  const handleAddToCart = (e) => {
+    if (!user.id) throw alert("You must be logged to perform this action")
+    dispatch(addToCart({productId:product.id}))
+      .then(() => setReset(reset - 1))
+  }
 
   const handleDeleteItem = e => {
     if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
     axios.delete(`/api/products/${product.id}`);
   };
+
+  const handleRemoveFromCart = ()=>{
+    dispatch(removeFromCart(product.id))
+      .then(()=>setReset(reset-1))
+  }
+
+  useEffect(()=>{
+    setOnCart(cart.filter(productCart => productCart.id == product.id))
+  },[reset])
 
   return (
     <Card
@@ -57,17 +70,15 @@ export default function GridCard({ product }) {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
-        <Typography sx={{ color: 'green' }}>
-          {product.price.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          })}
-        </Typography>
-        <Button onClick={handleAddToCart} size='small'>
-          Add to Cart
-        </Button>
-      </CardActions>
-      <Comment id={product.id} />
+          <Typography sx={{ color: 'green' }}>
+          { product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }
+          </Typography>
+          {onCart.length > 0 ? (
+          <Button onClick={handleRemoveFromCart} sx={{ color: 'red'}} size="small">Remove from Cart</Button>
+          ) : (
+            <Button onClick = { handleAddToCart } size = "small">Add to Cart</Button>
+          )}
+        </CardActions>
     </Card>
   );
 }

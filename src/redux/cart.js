@@ -20,6 +20,10 @@ export const emptyCart = createAsyncThunk('EMPTY_CART', () => {
   return axios.delete('/api/cart').then(r => r.data);
 });
 
+export const recordCart = createAsyncThunk('RECORD_CART', () => {
+  return axios.put('/api/cart/history').then(r => r.data);
+});
+
 export const logoutCart = createAction('LOGOUT_CART')
 
 const cartReducer = createReducer([], {
@@ -27,6 +31,7 @@ const cartReducer = createReducer([], {
   [addToCart.fulfilled]: (state, action) => action.payload,
   [removeFromCart.fulfilled]: (state, action) => action.payload,
   [emptyCart.fulfilled]: (state, action) => [],
+  [recordCart.fulfilled]: (state, action) => [],
   [logoutCart]: (state, action) => []
 });
 
