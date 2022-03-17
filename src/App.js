@@ -16,6 +16,7 @@ import Search from './components/SearchView/Search';
 import SearchedElements from './components/SearchedElements/SearchedElements';
 import HistoryView from './components/HistoryView/HistoryView'
 import AdminView from './components/AdminView/AdminView.jsx'
+import CategoryView from './components/CategoryView/CategoryView';
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path='/search/:title' element={<SearchedElements />} />
         <Route path='/history/:id' element={<HistoryView />} />
         <Route path='/admin' element={<AdminView/>} />
+        <Route path='/categories/:name' element={<CategoryView/>} />
       </Routes>
     </div>
   );
