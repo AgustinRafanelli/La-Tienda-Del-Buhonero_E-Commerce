@@ -158,3 +158,5 @@ Category.create({ name: 'armas' }).then(category => {
     category.addProduct(product.id);
   });
 });
+
+
