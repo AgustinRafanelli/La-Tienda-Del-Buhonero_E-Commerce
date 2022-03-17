@@ -80,7 +80,7 @@ router.put('/history', isLogged, (req,res,next)=>{
         let products = cart.map(product => JSON.stringify(product))
         Orders.create({ products })
           .then(order => user.addOrder(order))
-          //.then(()=> Cart.destroy({ where: { userId: req.user.id } }))
+          .then(()=> Cart.destroy({ where: { userId: req.user.id } }))
           .then(()=> res.status(202).send([]))
       })
     )

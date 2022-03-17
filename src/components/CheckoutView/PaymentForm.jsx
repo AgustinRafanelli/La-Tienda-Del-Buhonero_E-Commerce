@@ -4,8 +4,9 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import useInput from '../../hooks/useInput';
 
-export default function PaymentForm() {
+export default function PaymentForm({ payments }) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -17,6 +18,8 @@ export default function PaymentForm() {
             required
             id="cardName"
             label="Name on card"
+            value={payments[1].value}
+            onChange={payments[1].handleChange}
             fullWidth
             autoComplete="cc-name"
             variant="standard"
@@ -27,6 +30,8 @@ export default function PaymentForm() {
             required
             id="cardNumber"
             label="Card number"
+            value={payments[2].value}
+            onChange={payments[2].handleChange}
             fullWidth
             autoComplete="cc-number"
             variant="standard"
@@ -37,6 +42,8 @@ export default function PaymentForm() {
             required
             id="expDate"
             label="Expiry date"
+            value={payments[3].value}
+            onChange={payments[3].handleChange}
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
@@ -51,12 +58,6 @@ export default function PaymentForm() {
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
           />
         </Grid>
       </Grid>
