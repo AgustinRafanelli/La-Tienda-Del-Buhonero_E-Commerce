@@ -10,9 +10,12 @@ import GridProducts from './commons/GridProducts/GridProducts';
 import { useDispatch } from 'react-redux';
 import {getUser} from "./redux/user"
 import {getCart} from "./redux/cart"
+import AddModifyProductView from './components/AddModifyProductView/AddModifyProduct';
 import Checkout from './components/CheckoutView/Checkout';
 import Search from './components/SearchView/Search';
 import SearchedElements from './components/SearchedElements/SearchedElements';
+import HistoryView from './components/HistoryView/HistoryView'
+
 
 
 function App() {
@@ -40,9 +43,12 @@ function App() {
         <Route path='/home' element={<GridProducts/>} />
         <Route path='/' element={<Navigate to='/home' />} />
         <Route path='/product/:id' element={<CartProduct />} />
+        <Route path='/product/:id/modify' element={<AddModifyProductView />} />
+        <Route path='/product/addProduct' element={<AddModifyProductView />} />
         <Route path='/checkout' element={<Checkout />} />
-        <Route path='/search/:title' element={<SearchedElements />} />
 
+        <Route path='/search/:title' element={<SearchedElements />} />
+        <Route path='/history/:id' element={<HistoryView />} />
       </Routes>
     </div>
   );

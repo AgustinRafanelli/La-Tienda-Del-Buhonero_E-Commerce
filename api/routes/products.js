@@ -24,7 +24,7 @@ router.post("/", (req, res, next)=>{
 
 router.put("/:id", (req, res, next)=>{
     Product.update(req.body, {where: {id:req.params.id}, returning:true})
-    .then([_, updated], res.send(updated[0]))
+    .then((product)=>{res.send(product[1][0])})
     .catch(next)
 })
 
