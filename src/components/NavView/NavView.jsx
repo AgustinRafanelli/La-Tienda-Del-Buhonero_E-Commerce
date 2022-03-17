@@ -52,16 +52,16 @@ function NavView() {
               >
                 <MenuIcon />
               </IconButton>
-              <Link to="/">
+              <Link style={{color: "white", textDecoration: "none"}} to="/">
                 <Typography
                   variant='h6'
                   component='div'
-                  sx={{ flexGrow: 1 }}
                   className='leftSide__title'
                 >
                   #theMerchantShop
                 </Typography>
               </Link>
+
             </div>
             <div className='rightSide__container'>
               
@@ -69,10 +69,11 @@ function NavView() {
               {user.id ? (
                 <>
                   <Button onClick={handleRecord} color='inherit' className='login'>
-                    Previus purchase
+                    Previous purchase
                   </Button>
+                  {user.isAdmin && <Link style={{color: "white", textDecoration: "none"}} to="/admin"><Button color='inherit' className='login'>Users</Button></Link>}
                   <Button onClick={handleLogout} color='inherit' className='login'>
-                    Logout
+                    Log Out
                   </Button>
                 </>
               ) : (
@@ -81,7 +82,7 @@ function NavView() {
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <Button color="inherit" className="login">
-                    Login
+                    Log In
                   </Button>
                 </Link>
               )}

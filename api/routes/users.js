@@ -13,6 +13,12 @@ const isAdmin = (req, res, next) => {
   else next();
 };
 
+router.get('/admin', isLogged, isAdmin, (req, res, next) => {
+  User.findAll()
+    .then(users => res.send(users))
+    .catch(next);
+});
+
 router.post('/register', (req, res, next) => {
   User.create(req.body)
     .then(user => res.status(201).send(user))
@@ -49,11 +55,6 @@ router.put('/admin/:id', isLogged, isAdmin, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/admin', isLogged, isAdmin, (req, res, next) => {
-  User.findAll()
-    .then(users => res.send(users))
-    .catch(next);
-});
 
 router.get('/history/:id', (req, res, next)=>{
   User.findByPk(req.params.id)
