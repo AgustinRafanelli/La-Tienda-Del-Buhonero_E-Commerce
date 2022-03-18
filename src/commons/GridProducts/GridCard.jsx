@@ -50,7 +50,7 @@ export default function GridCard({ product }) {
       <Link to={`/product/${product.id}`}>
         <CardMedia
           component="img"
-          image="https://source.unsplash.com/random"
+          image={product.imgUrl || "https://source.unsplash.com/random"}
           alt="random"
         />
       </Link>
