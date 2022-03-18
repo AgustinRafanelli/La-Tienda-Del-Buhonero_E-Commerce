@@ -13,7 +13,18 @@ export const StyledContainer = styled.div`
     object-fit: contain;
     margin: 10px;
   }
-  
+
+  .btn-delete{
+    border-radius: 5px;
+    
+                
+                &:hover{
+                    transition: all 0.2s ease-in-out;
+                    background-color: rgba(0, 0, 0, 0.20);
+                    color: rgb(186,0,0);
+                    cursor: pointer;
+                }
+            }
 
   .info {
     margin-left: 10px;
