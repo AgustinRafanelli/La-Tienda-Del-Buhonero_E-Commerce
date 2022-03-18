@@ -48,7 +48,7 @@ function CartProduct({
   return ( 
     <StyledContainer>
       <img
-        src='https://upload.wikimedia.org/wikipedia/commons/6/6f/HK_USP_9mm_Pragl.jpg'
+        src={imgUrl || "https://source.unsplash.com/random"}
         alt='Not found'
         className='img'
       />
