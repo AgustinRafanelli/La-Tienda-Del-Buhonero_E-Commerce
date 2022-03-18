@@ -27,7 +27,7 @@ router.get('/valorations/:productId', isLogged, (req, res, next) => {
     where: { productId: req.params.productId, userId: req.user.id },
   })
     .then(review => res.send(`${review.valoration}`))
-    .catch(next);
+    .catch((err)=> console.log(err));
 });
 
 router.post('/valorations/:productId', isLogged, (req, res, next) => {

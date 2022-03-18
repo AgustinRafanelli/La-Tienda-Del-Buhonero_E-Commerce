@@ -1,0 +1,77 @@
+.containerSpinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(15,41,88, 0.8);
+    /* background: rgba(242,242,243, 0.6); */
+    width: 100%;
+    height: 100vh;  
+    z-index: 1031;
+    top: 0;
+    left: 0;
+}
+
+:root {
+    --sk-size: 150px;
+    --sk-color:  #F2F2F3;
+}
+  
+.sk-center { margin: auto }
+  
+.skCircleFade {
+    width: var(--sk-size);
+    height: var(--sk-size);
+    position: relative; 
+}
+  
+.skCircleFadeDot {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    top: 0; 
+}
+  
+.skCircleFadeDot:before {
+    content: '';
+    display: block;
+    width: 15%;
+    height: 15%;
+    background-color: var(--sk-color);
+    border-radius: 100%;
+    animation: skCircleFade 1.2s infinite ease-in-out both; 
+}
+  
+.skCircleFadeDot:nth-child(1)  { transform: rotate(30deg);  }
+.skCircleFadeDot:nth-child(2)  { transform: rotate(60deg);  }
+.skCircleFadeDot:nth-child(3)  { transform: rotate(90deg);  }
+.skCircleFadeDot:nth-child(4)  { transform: rotate(120deg); }
+.skCircleFadeDot:nth-child(5)  { transform: rotate(150deg); }
+.skCircleFadeDot:nth-child(6)  { transform: rotate(180deg); }
+.skCircleFadeDot:nth-child(7)  { transform: rotate(210deg); }
+.skCircleFadeDot:nth-child(8)  { transform: rotate(240deg); }
+.skCircleFadeDot:nth-child(9)  { transform: rotate(270deg); }
+.skCircleFadeDot:nth-child(10) { transform: rotate(300deg); }
+.skCircleFadeDot:nth-child(11) { transform: rotate(330deg); }
+.skCircleFadeDot:nth-child(1):before  { animation-delay: -1.1s; }
+.skCircleFadeDot:nth-child(2):before  { animation-delay: -1.0s; }
+.skCircleFadeDot:nth-child(3):before  { animation-delay: -0.9s; }
+.skCircleFadeDot:nth-child(4):before  { animation-delay: -0.8s; }
+.skCircleFadeDot:nth-child(5):before  { animation-delay: -0.7s; }
+.skCircleFadeDot:nth-child(6):before  { animation-delay: -0.6s; }
+.skCircleFadeDot:nth-child(7):before  { animation-delay: -0.5s; }
+.skCircleFadeDot:nth-child(8):before  { animation-delay: -0.4s; }
+.skCircleFadeDot:nth-child(9):before  { animation-delay: -0.3s; }
+.skCircleFadeDot:nth-child(10):before { animation-delay: -0.2s; }
+.skCircleFadeDot:nth-child(11):before { animation-delay: -0.1s; }
+  
+@keyframes skCircleFade {
+    0%, 39%, 100% {
+      opacity: 0;
+      transform: scale(0.6);
+    } 40% {
+      opacity: 1; 
+      transform: scale(1);
+    }
+}

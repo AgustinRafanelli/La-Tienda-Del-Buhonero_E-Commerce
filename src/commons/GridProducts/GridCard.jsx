@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart, removeFromCart } from '../../redux/cart';
 import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect} from 'react';
+import Valoration from '../Valoration/Valoration'
 
 export default function GridCard({product}) {
   const dispatch = useDispatch()
