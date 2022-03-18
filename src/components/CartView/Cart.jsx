@@ -29,7 +29,7 @@ const Cart = function () {
           ))}
           <div className='checkout' >
             <p> Total:{totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' } ) }</p>
-           <Link to= "/checkout"> <button>Checkout</button></Link>
+           <Link to= "/checkout"> <button className='btn-checkout'>Checkout</button></Link>
           </div>
         </div>
       ) : (
