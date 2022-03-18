@@ -77,7 +77,7 @@ export default function AddToCategoryCard({ product }) {
         </Typography>
       </CardActions>
       {catego.length > 0 ? (
-        <Button onClick={deleteProductCart}>Delete product to category</Button>
+        <Button onClick={deleteProductCart}>Delete product from category</Button>
       ) : (
         <Button onClick={addToCategory}>Add product to category</Button>
       )}

@@ -26,8 +26,14 @@ router.get('/valorations/:productId', isLogged, (req, res, next) => {
   Review.findOne({
     where: { productId: req.params.productId, userId: req.user.id },
   })
-    .then(review => res.send(`${review.valoration}`))
-    .catch((err)=> console.log(err));
+    .then(review => {
+      if (!review) { 
+        res.send('0')
+      } else {
+        res.send(`${review.valoration}`)
+      }
+    })
+    .catch(next);
 });
 
 router.post('/valorations/:productId', isLogged, (req, res, next) => {
