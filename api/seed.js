@@ -54,6 +54,7 @@ User.create({
           });
       });
   })
+
   .catch((err) => console.log("find one ", err));
 
 Category.create({ name: "armas" }).then((category) => {

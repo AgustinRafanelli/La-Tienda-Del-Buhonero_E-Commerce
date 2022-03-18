@@ -28,10 +28,10 @@ const userReducer = createReducer(
   {},
   {
     [sendRegisterRequest.fulfilled]: (state, action) => action.payload,
+    [sendRegisterRequest.rejected]: (state, action) => { alert('Invalid credentials') },
     [sendLogInRequest.fulfilled]: (state, action) => action.payload,
-    [sendLogOutRequest.fulfilled]: (state, action) => {
-      return {};
-    },
+    [sendLogInRequest.rejected]: (state, action) => { alert('Wrong credentials') },
+    [sendLogOutRequest.fulfilled]: (state, action) => { return {} },
     [updateUser.fulfilled]: (state, action) => action.payload,
     [getUser.fulfilled]: (state, action) => action.payload,
   }
