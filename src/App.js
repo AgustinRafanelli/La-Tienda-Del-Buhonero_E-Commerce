@@ -15,9 +15,9 @@ import Checkout from './components/CheckoutView/Checkout';
 import Search from './components/SearchView/Search';
 import SearchedElements from './components/SearchedElements/SearchedElements';
 import HistoryView from './components/HistoryView/HistoryView'
-import AdminView from './components/AdminView/AdminView.jsx'
-
-
+import AddToCategory from './components/AddToCategory/AddToCategory';
+import CategoryView from './components/CategoryView/CategoryView';
+import AdminView from './components/AdminView/AdminView';
 
 function App() {
   
@@ -49,7 +49,9 @@ function App() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/search/:title' element={<SearchedElements />} />
         <Route path='/history/:id' element={<HistoryView />} />
-        <Route path='/admin' element={<AdminView/>} />
+        <Route path="/addToCategory" element={<AddToCategory />} />
+        <Route path="/categories/:name" element={<CategoryView />} />
+        <Route path="/admin" element={<AdminView />} />
       </Routes>
     </div>
   );

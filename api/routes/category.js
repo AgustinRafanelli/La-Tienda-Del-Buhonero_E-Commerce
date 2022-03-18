@@ -54,10 +54,10 @@ router.delete("/:id", isLogedAndAdmin, (req, res, next) => {
     .catch(next);
 });
 
-router.delete("/:category", isLogedAndAdmin, (req, res, next) => {
+router.delete("/:category/:productId", isLogedAndAdmin, (req, res, next) => {
   Category.findOne({ where: { name: req.params.category } })
     .then((category) => {
-      Product.findOne({ where: { id: req.body.productId } })
+      Product.findOne({ where: { id: req.params.productId } })
         .then((product) => {
           category.removeProduct(product);
         })
