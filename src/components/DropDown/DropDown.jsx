@@ -115,7 +115,7 @@ const DropDown = () => {
                       sx={{ flexGrow: 1 }}
                       className="leftSide__title"
                     >
-                      <Link to="/home">{category.name}</Link>
+                      <Link to={`/categories/${category.name}`}>{category.name}</Link>
                     </Typography>
                     <Button
                       variant="contained"
@@ -158,7 +158,7 @@ const DropDown = () => {
                     sx={{ flexGrow: 1 }}
                     className="leftSide__title"
                   >
-                    <Link to="/home">{category.name}</Link>
+                   <Link to={`/categories/${category.name}`}>{category.name}</Link>
                   </Typography>
                 </li>
               )

@@ -28,6 +28,7 @@ function CartProduct({
   }, [cart.amount])
 
   const handleLess = ()=>{
+    if(cart.amount === 1) return
     let amount = cart.amount - 1
     dispatch(addToCart({ productId: id, amount }))
       .catch(err => console.error(err))
@@ -61,7 +62,7 @@ function CartProduct({
             <button onClick={handleMore}>+</button>
             unidades)
           </p>
-            <DeleteIcon onClick={handleDelete}></DeleteIcon>
+            <DeleteIcon onClick={handleDelete} className='btn-delete'></DeleteIcon>
         </div>
         <h3 className='info__model'>{model}</h3>  
         <p className='info__description'>{description}</p>

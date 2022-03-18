@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useInput from "../../hooks/useInput";
 import useForm from "../../hooks/useForm";
+import Loader from "../../commons/Loader/Loader";
 
 
 function Copyright(props) {
@@ -41,12 +42,14 @@ export default function RegisterView() {
   const email = useInput("email");
   const password = useInput("password");
 
-  const handleSubmit = useForm(userName, email, password, "register")
+  const [loader, setLoader] = useState(false)
+  const handleSubmit = useForm(userName, email, password, "register", setLoader )
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {loader && (<Loader />)}
         <Box
           sx={{
             marginTop: 8,

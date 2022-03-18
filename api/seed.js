@@ -51,6 +51,7 @@ User.create({
           });
       });
   })
+  .catch((err) => console.log("find one ", err));
 
 Category.create({ name: "Products pc" }).then((categoryDad) => {
   Category.create({ name: "Microphone" }).then((category) => {
