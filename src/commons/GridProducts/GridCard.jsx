@@ -11,6 +11,7 @@ import { addToCart } from "../../redux/cart";
 import axios from "axios";
 import Valoration from "../Valoration/Valoration";
 import Comment from "../Comment/Comment";
+import {StyledContainer} from "./style"
 
 export default function GridCard({ product }) {
   const dispatch = useDispatch();
@@ -37,13 +38,16 @@ export default function GridCard({ product }) {
       }}
     >
       {user.isAdmin ? (
+        <StyledContainer>
         <Button
           onClick={handleDeleteItem}
-          sx={{ color: "red", fontweight: "bold" }}
+          sx={{ color: "red", fontweight: "bold", width:"100%"  }}
           size="small"
+          className="btn-delete"
         >
-          X
+          Delete Product
         </Button>
+        </StyledContainer>
       ) : (
         <></>
       )}
