@@ -13,21 +13,37 @@ import axios from "axios";
 import Valoration from "../Valoration/Valoration";
 import Comment from "../Comment/Comment";
 import {StyledContainer} from "./style"
+import { useState,useEffect } from "react";
+import { removeFromCart } from "../../redux/cart";
 
 export default function GridCard({ product }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const param = useLocation();
+
+  const [reset, setReset] = useState(0)
+  const [onCart, setOnCart] = useState([])
 
   const handleAddToCart = (e) => {
     if (!user.id) throw alert("You must be logged to perform this action");
-    dispatch(addToCart({ productId: product.id }));
+    dispatch(addToCart({ productId: product.id }))
+      .then(() => setReset(reset + 1))
   };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart(product.id))
+      .then(() => setReset(reset - 1))
+  }
 
   const handleDeleteItem = (e) => {
     if (!user.isAdmin) throw alert("You shoudn't be seeing this button");
     axios.delete(`/api/products/${product.id}`);
   };
+
+  useEffect(()=>{
+    setOnCart(cart.filter(productCart => productCart.id == product.id))
+  },[reset])
 
   return (
     <Card
@@ -72,9 +88,11 @@ export default function GridCard({ product }) {
             currency: "USD",
           })}
         </Typography>
-        <Button onClick={handleAddToCart} size="small">
-          Add to Cart
-        </Button>
+        {onCart.length > 0 ? (
+          <Button onClick={handleRemoveFromCart} sx={{ color: 'red' }} size="small">Remove from Cart</Button>
+        ) : (
+          <Button onClick={handleAddToCart} size="small">Add to Cart</Button>
+        )}
       </CardActions>
       <Comment id={product.id} />
     </Card>

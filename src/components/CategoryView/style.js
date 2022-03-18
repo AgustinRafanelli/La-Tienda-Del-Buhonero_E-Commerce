@@ -10,22 +10,20 @@ export const StyledContainer = styled.div`
 }
 .products{
     display: flex;
-flex-wrap: wrap;
-width: 95%;
-justify-content: center;
-margin-left: 20px;
+    flex-wrap: wrap;
+    width: 95%;
+    justify-content: center;
+    margin-left: 20px;
 
-
-.product{
-    height: 500px;
-    width: 290px;
-      flex-direction: column;
-       align-items: space-between;
-        justify-content: left;
-        margin: 10px;
-            
-}
-
+    .product{
+        height: auto;
+        width: 290px;
+        flex-direction: column;
+        align-items: space-between;
+            justify-content: left;
+            margin: 10px;
+                
+    }
 }
 
 

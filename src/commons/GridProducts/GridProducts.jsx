@@ -16,7 +16,6 @@ const theme = createTheme();
 
 export default function GridProducts({ items }) {
   const [products, setProducts] = useState(items);
-  const [test, setTest] = useState({});
   const url = useLocation();
 
   useEffect(() => {
