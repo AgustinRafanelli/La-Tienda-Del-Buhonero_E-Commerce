@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import { CardMedia, Typography } from "@mui/material";
+import Valoration from "../Valoration/Valoration";
 
 const CartProduct = () => {
   const [product, setProduct] = useState([]);
@@ -42,13 +43,10 @@ const CartProduct = () => {
         />
 
         <div className="texts">
-          <Typography gutterBottom variant="h2" component="div">
+          <Typography variant="h2" component="div">
             {product.title} {product.brand} {product.model}
           </Typography>
-          <hr></hr>
-          <Typography gutterBottom variant="h6" component="div">
-            <strong>Description:</strong> {product.description}
-          </Typography>
+          <Valoration id={product.id} />
           <hr></hr>
           <Typography gutterBottom variant="h3" component="div">
             <strong>Price:</strong>{" "}
@@ -59,8 +57,11 @@ const CartProduct = () => {
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
             <strong>Stock:</strong> {product.stock} unidades
-          </Typography>
+          </Typography> 
           <hr></hr>
+          <Typography gutterBottom variant="h6" component="div">
+            <strong>Description:</strong> {product.description}
+          </Typography>
         </div>
       </ImageList>
     </div>

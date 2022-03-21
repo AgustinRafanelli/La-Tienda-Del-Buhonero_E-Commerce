@@ -43,7 +43,7 @@ function NavView() {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2 }}
+                sx={{ mr: 0}}
                 onClick={
                   showCategory
                     ? () => setShowCategory(false)
@@ -52,13 +52,14 @@ function NavView() {
               >
                 <MenuIcon />
               </IconButton>
+              <img style={{ width: '30px', height: '40px' }} src="https://cdn.discordapp.com/attachments/648296571812970506/954445135805026374/poster504x498f8f8f8-pad600x600f8f8f8.png" alt="no" />
               <Link style={{color: "white", textDecoration: "none"}} to="/">
                 <Typography
                   variant='h6'
                   component='div'
                   className='leftSide__title'
                 >
-                  #theMerchantShop
+                  theMerchantShop
                 </Typography>
               </Link>
 
